@@ -32,13 +32,13 @@ function App() {
     return (
         <div className="container-fluid vh-100">
             <div className='row h-100'>
-                <div className='col panel-tkinter ' id='element-panel'>
+                <div className='col pt-2 panel-tkinter ' id='element-panel'>
                     <ElementPanel onAddElement={addElement} />
                 </div>
                 <div className='col-8 panel-tkinter'>
                     <Canvas elements={elements} onSelectElement={selectElement} onElementMoveConfig={updateConfig} selectedElementIndex={selectedElement}/>
                 </div>
-                <div className='col panel-tkinter '>
+                <div className='col pt-2 panel-tkinter '>
                     <ConfigPanel element={elements[selectedElement]} onUpdateConfig={updateConfig} codeDisplayDialog={codeDisplayDialog} />
                 </div>
             </div>
