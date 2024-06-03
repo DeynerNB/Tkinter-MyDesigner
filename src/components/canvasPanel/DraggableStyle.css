@@ -1,6 +1,6 @@
 
 .draggable-Window {
-    background-color: #d1d1d1;
+    outline: 2px solid #d1d1d1;
     min-width: 100px;
     min-height: 100px;
 
@@ -8,7 +8,7 @@
 }
 
 .draggable-Button {
-    background-color: #d1d1d1;
+    outline: 2px solid #6b6b6b;
     /* min-width: 100px;
     min-height: 20px; */
 

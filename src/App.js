@@ -36,7 +36,7 @@ function App() {
                     <ElementPanel onAddElement={addElement} />
                 </div>
                 <div className='col-8 panel-tkinter'>
-                    <Canvas elements={elements} onSelectElement={selectElement} onElementMoveConfig={updateConfig}/>
+                    <Canvas elements={elements} onSelectElement={selectElement} onElementMoveConfig={updateConfig} selectedElementIndex={selectedElement}/>
                 </div>
                 <div className='col panel-tkinter '>
                     <ConfigPanel element={elements[selectedElement]} onUpdateConfig={updateConfig} codeDisplayDialog={codeDisplayDialog} />
@@ -48,6 +48,7 @@ function App() {
                 &&
                 <CodeDisplay
                     codeDisplayDialog={codeDisplayDialog}
+                    elements={elements}
                 />
             }
         </div>
