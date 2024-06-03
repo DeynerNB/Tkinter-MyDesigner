@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import "./DraggableStyle.css"
 
 function DraggableElement({ element, isSelected, onElementMoveConfig }) {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [position, setPosition] = useState({ x: 20, y: 20 });
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const element_panel = document.getElementById("element-panel")
 
