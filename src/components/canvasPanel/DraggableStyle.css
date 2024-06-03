@@ -1,0 +1,16 @@
+
+.draggable-Window {
+    background-color: #d1d1d1;
+    min-width: 100px;
+    min-height: 100px;
+
+    cursor: move;
+}
+
+.draggable-Button {
+    background-color: #d1d1d1;
+    /* min-width: 100px;
+    min-height: 20px; */
+
+    cursor: move;
+}

@@ -1,0 +1,23 @@
+.code-display-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    top: 0;
+    right: 0;
+
+    background-color: #000000b9;
+}
+
+.code-display-icon-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.icon-close {
+    user-select: none;
+    cursor: pointer;
+
+    font-size: 28px;
+}
