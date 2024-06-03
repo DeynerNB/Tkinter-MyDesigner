@@ -1,0 +1,15 @@
+.span_button {
+    border: 2px solid #1f0063;
+
+    user-select: none;
+    cursor: pointer;
+}
+
+.span_button:hover {
+    background-color: #00000020;
+}
+
+.span_button:active {
+    background-color: #00000052;
+}
+
