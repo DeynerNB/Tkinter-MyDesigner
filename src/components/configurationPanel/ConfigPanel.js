@@ -6,7 +6,7 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
 
     useEffect(() => {
         if (element) {
-            setConfig(element.type.config);
+            setConfig(element.config);
         }
     }, [element]);
 
@@ -20,7 +20,11 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setConfig({ ...config, [name]: value });
+        const new_config = {
+            ...config,
+            [name]: value
+        }
+        setConfig( new_config );
     };
 
     const displayInput = (attribute, index) => {
@@ -44,7 +48,7 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
     return (
         <div className='d-flex flex-column h-100 justify-content-between'>
             <div>
-                <h3>Configuración de {element.type.name}</h3>
+                <h3>Configuración de {element.name}</h3>
                 <div>
                     {
                         Object.keys(config).map((key, index) => displayInput(key, index))
