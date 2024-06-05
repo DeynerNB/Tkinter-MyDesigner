@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { generateImportLine, generateWindowCode, generateButtonCode, generateFinalCode } from "./CodeTemplate"
 import "./CodeDisplayStyle.css"
 
-function CodeDisplay({ codeDisplayDialog, elements }) {
+function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
 
     // Variable to store the resulted code
     const [resultCode, setResultCode] = useState("")
@@ -64,7 +64,10 @@ function CodeDisplay({ codeDisplayDialog, elements }) {
     }
 
     // Generate the code when display
-    useEffect(() => { generateCode() });
+    useEffect(() => {
+        deactivateSelection( null );
+        generateCode();
+    });
 
     return (
         <div className='code-display-container d-flex justify-content-center align-items-center'>

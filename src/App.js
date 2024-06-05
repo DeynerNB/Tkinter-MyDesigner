@@ -67,6 +67,7 @@ function App() {
                 <CodeDisplay
                     codeDisplayDialog={codeDisplayDialog}
                     elements={elements}
+                    deactivateSelection={selectElement}
                 />
             }
         </div>
