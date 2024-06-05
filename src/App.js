@@ -50,13 +50,13 @@ function App() {
     return (
         <div className="container-fluid vh-100">
             <div className='row h-100'>
-                <div className='col pt-2 panel-tkinter' id='element-panel'>
+                <div className='col pt-2 panel-tkinter' id='element-panel' style={{ minWidth: "170px" }}>
                     <ElementPanel onAddElement={addElement} />
                 </div>
                 <div className='col-8 panel-tkinter' id='canvas-panel'>
                     <Canvas elements={elements} setSelectElementKey={selectElement} onElementMoveConfig={updateConfig} selectedElementKey={selectedElementKey}/>
                 </div>
-                <div className='col pt-2 panel-tkinter '>
+                <div className='col pt-2 panel-tkinter ' style={{ minWidth: "170px" }}>
                     <ConfigPanel element={ elements[ selectedElementKey ] } onUpdateConfig={updateConfig} codeDisplayDialog={codeDisplayDialog} />
                 </div>
             </div>

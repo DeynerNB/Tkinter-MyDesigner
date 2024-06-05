@@ -37,9 +37,10 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
     // Return the corresponding input element
     const displayInput = (attribute, index) => {
         return (
-            <label key={index}>
+            <label key={index} style={{ width: "100%" }}>
                 {attribute.charAt(0).toUpperCase() + attribute.slice(1)}
                 <input
+                    style={{ width: "100%" }}
                     name={attribute}
                     value={`${config[attribute]}` || ''}
                     onChange={handleChange}
@@ -60,7 +61,7 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
                 (element) ?
                 (
                     <div>
-                        <h3>Configuración de {element.name}</h3>
+                        <h4>Configuración de {element.name}</h4>
                         <div>
                             { Object.keys(config).map((key, index) => displayInput(key, index)) }
                         </div>
