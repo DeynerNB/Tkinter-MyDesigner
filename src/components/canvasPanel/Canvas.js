@@ -5,7 +5,7 @@ function Canvas({ elements, setSelectElementKey, onElementMoveConfig, selectedEl
 
     const generateElements = () => {
         return Object.entries(elements).map(([key, value], index) => (
-            <div key={key} onClick={() => setSelectElementKey( key )}>
+            <div key={key} onClick={(e) => { e.stopPropagation(); setSelectElementKey( key ); }}>
                 <DraggableElement
                     element={value}
                     isSelected={key === selectedElementKey}
@@ -15,7 +15,7 @@ function Canvas({ elements, setSelectElementKey, onElementMoveConfig, selectedEl
     }
 
     return (
-        <div className="position-relative w-100 h-100">
+        <div className="position-relative w-100 h-100" onClick={ () => setSelectElementKey( null ) }>
             { generateElements() }
         </div>
     );
