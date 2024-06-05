@@ -9,7 +9,7 @@ function Canvas({ elements, setSelectElementKey, onElementMoveConfig, selectedEl
             <div key={key} onClick={() => setSelectElementKey( key )}>
                 <DraggableElement
                     element={value}
-                    isSelected={key == selectedElementKey}
+                    isSelected={key === selectedElementKey}
                     onElementMoveConfig={onElementMoveConfig} />
             </div>
         ))
