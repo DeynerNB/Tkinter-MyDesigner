@@ -11,7 +11,8 @@ function App() {
     const [showCodeDisplay, setShowCodeDisplay] = useState(false);
 
     const addElement = (type) => {
-        setElements([...elements, { type }]);
+        let count = elements.filter( (elem) => elem.type.name == type.name ).length
+        setElements([...elements, { type: { ...type, ID: `${type.name}_${count}` } }]);
     };
 
     const selectElement = (index) => {
