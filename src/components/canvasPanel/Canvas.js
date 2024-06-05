@@ -4,7 +4,6 @@ import DraggableElement from './DraggableElement';
 function Canvas({ elements, setSelectElementKey, onElementMoveConfig, selectedElementKey }) {
 
     const generateElements = () => {
-
         return Object.entries(elements).map(([key, value], index) => (
             <div key={key} onClick={() => setSelectElementKey( key )}>
                 <DraggableElement

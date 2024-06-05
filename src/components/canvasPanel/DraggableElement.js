@@ -21,21 +21,29 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         });
     };
 
+    // Calculate the position of the element
     const calculateElementPosition = (e) => {
-        const offset_element = 20 + 5;
-        const leftUp_corner_pos  = e.clientX - element_panel.offsetWidth - offset.x;
-        const rightUp_corner_pos = leftUp_corner_pos + element.config.width + offset_element
+        const margin_element = 20 + 5;
 
-        console.log(element.config)
-        console.log(rightUp_corner_pos)
+        // Calculate the element corners positions
+        const leftUp_corner_pos  = e.clientX - element_panel.offsetWidth - offset.x;
+        const rightUp_corner_pos = leftUp_corner_pos + element.config.width + margin_element
 
         let positionX = 0;
-        if (leftUp_corner_pos <= 0) { positionX = 0; }
-        else if (rightUp_corner_pos >= canvas_panel.offsetWidth) { positionX = canvas_panel.offsetWidth - element.config.width - offset_element }
-        else { positionX = leftUp_corner_pos }
-
-        // const positionX = (temp_posX <= 0) ? 0 : temp_posX;
         const positionY = e.clientY - offset.y
+
+        // Element has left the bounds on the left
+        if (leftUp_corner_pos <= 0) {
+            positionX = 0;
+        }
+        // Element has left the bounds on the right
+        else if (rightUp_corner_pos >= canvas_panel.offsetWidth) {
+            positionX = canvas_panel.offsetWidth - element.config.width - margin_element
+        }
+        // Element is within bounds
+        else {
+            positionX = leftUp_corner_pos
+        }
 
         return { positionX, positionY }
     }
@@ -47,11 +55,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
             return;
         }
         // Calculate the new position relative to the grab point
-        const temp_posX = e.clientX - element_panel.offsetWidth - offset.x;
         const { positionX, positionY } = calculateElementPosition( e )
-
-        // const positionX = (temp_posX <= 0) ? 0 : temp_posX;
-        // const positionY = e.clientY - offset.y
 
         // Set the element position configuration
         const new_config = {
