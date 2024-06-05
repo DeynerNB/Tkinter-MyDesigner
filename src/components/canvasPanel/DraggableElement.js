@@ -37,7 +37,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
 
     return (
         <div
-            className={`draggable-${element.name} text-center text-nowrap overflow-hidden`}
+            className={`draggable-${element.name} text-center text-nowrap ${ isSelected ? "selected_element" : "" }`}
             style={{ left: Number(element.config.posX), top: Number(element.config.posY), position: 'absolute', width: `${element.config.width}px`, height: `${element.config.height}px` }}
             draggable
             onDragStart={handleDragStart}
