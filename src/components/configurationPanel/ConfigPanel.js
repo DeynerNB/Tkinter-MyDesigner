@@ -50,20 +50,29 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
     }
 
     // If there is no element selected := Display a default message
-    if (!element) {
-        return <div className="panel d-flex h-100 justify-content-center align-items-center">Selecciona un elemento</div>;
-    }
+    // if (!element) {
+    //     return <div className="panel d-flex h-100 justify-content-center align-items-center text-center">Selecciona un elemento</div>;
+    // }
 
     return (
         <div className='d-flex flex-column h-100 justify-content-between'>
+            {
+                (element) ?
+                (
+                    <div>
+                        <h3>Configuración de {element.name}</h3>
+                        <div>
+                            { Object.keys(config).map((key, index) => displayInput(key, index)) }
+                        </div>
+                    </div>
+                )
+                :
+                (
+                    <div className="panel d-flex h-100 justify-content-center align-items-center text-center">Selecciona un elemento</div>
+                )
+            }
             <div>
-                <h3>Configuración de {element.name}</h3>
-                <div>
-                    { Object.keys(config).map((key, index) => displayInput(key, index)) }
-                </div>
-            </div>
-            <div>
-                <button className='w-100' onClick={() => codeDisplayDialog(true)}>Generar código</button>
+                <button className='w-100 mb-2' onClick={() => codeDisplayDialog(true)}>Generar código</button>
             </div>
         </div>
     );
