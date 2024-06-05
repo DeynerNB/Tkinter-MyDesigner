@@ -10,12 +10,14 @@ function App() {
     const [selectedElementKey, setSelectedElementKey] = useState(null);
     const [showCodeDisplay, setShowCodeDisplay] = useState(false);
 
+    // Add a element to the elements object
     const addElement = (new_element) => {
         let count = 0
         Object.keys( elements ).forEach( key => {
             count += key.includes( new_element.name ) ? 1 : 0;
         });
 
+        // Set the element id based on its name and the number of the same elements found
         const element_id = `${new_element.name}_${count}`
         const updatedElements = {
             ...elements,
@@ -25,10 +27,12 @@ function App() {
         setElements(updatedElements);
     };
 
+    // Set the selected element
     const selectElement = (element_key) => {
         setSelectedElementKey(element_key);
     };
 
+    // Set the new configuration for the selected element
     const updateConfig = (newConfig) => {
         const updatedElements = {
             ...elements,
@@ -38,6 +42,7 @@ function App() {
         setElements(updatedElements);
     };
 
+    // Open the show code window
     const codeDisplayDialog = (value) => {
         setShowCodeDisplay( value )
     }
@@ -45,10 +50,10 @@ function App() {
     return (
         <div className="container-fluid vh-100">
             <div className='row h-100'>
-                <div className='col pt-2 panel-tkinter ' id='element-panel'>
+                <div className='col pt-2 panel-tkinter' id='element-panel'>
                     <ElementPanel onAddElement={addElement} />
                 </div>
-                <div className='col-8 panel-tkinter'>
+                <div className='col-8 panel-tkinter' id='canvas-panel'>
                     <Canvas elements={elements} setSelectElementKey={selectElement} onElementMoveConfig={updateConfig} selectedElementKey={selectedElementKey}/>
                 </div>
                 <div className='col pt-2 panel-tkinter '>
