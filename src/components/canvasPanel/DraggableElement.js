@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import "./DraggableStyle.css"
 
 function DraggableElement({ element, isSelected, onElementMoveConfig }) {
-    const [position, setPosition] = useState({ x: 20, y: 20 });
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const element_panel = document.getElementById("element-panel")
 
@@ -32,14 +31,8 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
             "posX": positionX.toFixed(2),
             "posY": positionY.toFixed(2),
         }
-        console.log("conf", new_config)
 
         onElementMoveConfig( new_config )
-
-        setPosition({
-            x: positionX,
-            y: positionY
-        });
     };
 
     return (
