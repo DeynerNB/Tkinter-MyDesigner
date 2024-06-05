@@ -27,10 +27,14 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         const positionX = (e.clientX - element_panel.offsetWidth <= 0) ? 0 : e.clientX - element_panel.offsetWidth - offset.x;
         const positionY = e.clientY - offset.y
 
-        element.config.posX = positionX.toFixed(2)
-        element.config.posY = positionY.toFixed(2)
+        const new_config = {
+            ...element.config,
+            "posX": positionX.toFixed(2),
+            "posY": positionY.toFixed(2),
+        }
+        console.log("conf", new_config)
 
-        onElementMoveConfig( element.config )
+        onElementMoveConfig( new_config )
 
         setPosition({
             x: positionX,
@@ -41,7 +45,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
     return (
         <div
             className={`draggable-${element.name} text-center text-nowrap overflow-hidden`}
-            style={{ left: position.x, top: position.y, position: 'absolute', width: `${element.config.width}px`, height: `${element.config.height}px` }}
+            style={{ left: Number(element.config.posX), top: Number(element.config.posY), position: 'absolute', width: `${element.config.width}px`, height: `${element.config.height}px` }}
             draggable
             onDragStart={handleDragStart}
             onDrag={handleDrag}
