@@ -76,7 +76,9 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
                 top: Number(element.config.posY),
                 position: 'absolute',
                 width: `${element.config.width}px`,
-                height: `${element.config.height}px` }}
+                height: `${element.config.height}px`,
+                zIndex: `${element.name === "Window" ? 100 : 200}`
+            }}
             draggable
             onDragStart={handleDragStart}
             onDrag={handleDrag}
