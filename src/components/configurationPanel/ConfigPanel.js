@@ -1,7 +1,7 @@
 // src/components/ConfigPanel.js
 import React, { useState, useEffect } from 'react';
 
-function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
+function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelectedElement }) {
     const [config, setConfig] = useState(element ? element.config : {});
 
     // Get the config object of the selected element
@@ -86,7 +86,7 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
                 )
             }
             <div>
-                <button className='w-100 mb-2' onClick={() => {}}>Eliminar elemento</button>
+                <button className='w-100 mb-2' onClick={() => deleteSelectedElement()}>Eliminar elemento</button>
                 <button className='w-100 mb-2' onClick={() => codeDisplayDialog(true)}>Generar código</button>
             </div>
         </div>
