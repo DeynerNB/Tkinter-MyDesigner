@@ -126,3 +126,37 @@ export const TKinter_Text = {
         }
     }
 }
+
+export const Tkinter_Label = {
+    name: "Label",
+    config: {
+        posX: {
+            value: 20,
+            type: "number"
+        },
+        posY: {
+            value: 20,
+            type: "number"
+        },
+        width: {
+            value: 100,
+            type: "number"
+        },
+        height: {
+            value: 35,
+            type: "number"
+        },
+        textContent: {
+            value: "",
+            type: "text"
+        },
+        background: {
+            value: "#FFFFFF",
+            type: "color"
+        },
+        foreground: {
+            value: "#000000",
+            type: "color"
+        }
+    }
+}

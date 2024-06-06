@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { generateImportLine, generateWindowCode, generateButtonCode, generateFinalCode } from "./CodeTemplate"
+import { generateImportLine, generateWindowCode, generateElementCode, generateFinalCode } from "./CodeTemplate"
 import "./CodeDisplayStyle.css"
 
 function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
@@ -28,8 +28,8 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
             const { name, config } = value;
 
             if (name === "Window") {
-                originX = config.posX;
-                originY = config.posY;
+                originX = config.posX.value;
+                originY = config.posY.value;
                 hasWindow = true;
                 code += generateWindowCode(config);
             }
@@ -46,7 +46,19 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
 
             if (name === "Button") {
                 importObject.add( "Button" )
-                code += generateButtonCode(config, index, originX, originY);
+                code += generateElementCode(config, key, originX, originY, "Button");
+            }
+            else if (name === "Entry") {
+                importObject.add( "Entry" )
+                code += generateElementCode(config, key, originX, originY, "Entry");
+            }
+            else if (name === "Text") {
+                importObject.add( "Text" )
+                code += generateElementCode(config, key, originX, originY, "Text");
+            }
+            else if (name === "Label") {
+                importObject.add( "Label" )
+                code += generateElementCode(config, key, originX, originY, "Label");
             }
         })
 

@@ -29,7 +29,6 @@ function App() {
 
     // Set the selected element
     const selectElement = (element_key) => {
-        console.log(element_key)
         setSelectedElementKey(element_key);
     };
 

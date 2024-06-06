@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Tkinter_Window, Tkinter_Button, TKinter_Entry, TKinter_Text } from './Elements';
+import { Tkinter_Window, Tkinter_Button, TKinter_Entry, TKinter_Text, Tkinter_Label } from './Elements';
 import "./ElementPanel.css"
 
 function ElementPanel({ onAddElement }) {
@@ -13,6 +13,7 @@ function ElementPanel({ onAddElement }) {
                     <span className='w-100 text-center span_button' onClick={() => onAddElement(Tkinter_Button)}>{Tkinter_Button.name}</span>
                     <span className='w-100 text-center span_button' onClick={() => onAddElement(TKinter_Entry)}>{TKinter_Entry.name}</span>
                     <span className='w-100 text-center span_button' onClick={() => onAddElement(TKinter_Text)}>{TKinter_Text.name}</span>
+                    <span className='w-100 text-center span_button' onClick={() => onAddElement(Tkinter_Label)}>{Tkinter_Label.name}</span>
                 </div>
             </div>
             <div>
