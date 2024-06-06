@@ -90,7 +90,7 @@ function App() {
     return (
         <div className="container-fluid vh-100">
             <div className='row h-100'>
-                <div className='col pt-2 panel-tkinter' id='element-panel' style={{ minWidth: "170px" }}>
+                <div className='col pt-2 panel-tkinter d-flex flex-column justify-content-between' id='element-panel' style={{ minWidth: "170px" }}>
                     <ElementPanel onAddElement={addElement} />
                 </div>
                 <div className='col-8 panel-tkinter' id='canvas-panel'>
