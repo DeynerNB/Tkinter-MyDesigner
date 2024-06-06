@@ -78,7 +78,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
                 width: `${element.config.width.value}px`,
                 height: `${element.config.height.value}px`,
                 zIndex: `${element.name === "Window" ? 100 : 200}`,
-                backgroundColor: `${element.config.background?.value || "#FFFFFF"}`,
+                backgroundColor: `${element.config.background?.value || "#ffffff"}`,
                 color: `${element.config.foreground?.value || "#000000"}`,
                 textAlign: `${element.config.justify?.value || "center"}`,
             }}

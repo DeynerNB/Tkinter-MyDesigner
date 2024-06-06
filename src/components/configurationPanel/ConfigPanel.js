@@ -86,6 +86,7 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
                 )
             }
             <div>
+                <button className='w-100 mb-2' onClick={() => {}}>Eliminar elemento</button>
                 <button className='w-100 mb-2' onClick={() => codeDisplayDialog(true)}>Generar código</button>
             </div>
         </div>

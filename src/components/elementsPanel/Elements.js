@@ -117,7 +117,7 @@ export const TKinter_Text = {
             type: "number"
         },
         background: {
-            value: "#FFFFFF",
+            value: "#ffffff",
             type: "color"
         },
         foreground: {
