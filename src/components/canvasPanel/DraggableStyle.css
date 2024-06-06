@@ -1,3 +1,16 @@
+.selected_element::after {
+    content: "";
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+
+    top: -10px;
+    left: -10px;
+
+    position: absolute;
+    z-index: 100;
+
+    outline: 2px solid#c90000;
+}
 
 .draggable-Window {
     outline: 2px solid #d1d1d1;
@@ -15,16 +28,18 @@
     cursor: move;
 }
 
-.selected_element::after {
-    content: "";
-    width: calc(100% + 20px);
-    height: calc(100% + 20px);
+.draggable-Entry {
+    outline: 2px solid #6b6b6b;
+    /* min-width: 100px;
+    min-height: 20px; */
 
-    top: -10px;
-    left: -10px;
+    cursor: move;
+}
 
-    position: absolute;
-    z-index: 100;
+.draggable-Text {
+    outline: 2px solid #6b6b6b;
+    /* min-width: 100px;
+    min-height: 20px; */
 
-    outline: 2px solid#c90000;
+    cursor: move;
 }

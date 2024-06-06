@@ -14,11 +14,11 @@ export const Tkinter_Window = {
             type: "text"
         },
         width: {
-            value: 200,
+            value: 700,
             type: "number"
         },
         height: {
-            value: 200,
+            value: 500,
             type: "number"
         },
         background: {
@@ -63,7 +63,7 @@ export const Tkinter_Button = {
 }
 
 export const TKinter_Entry = {
-    name: "Button",
+    name: "Entry",
     config: {
         posX: {
             value: 20,
@@ -74,7 +74,7 @@ export const TKinter_Entry = {
             type: "number"
         },
         width: {
-            value: 100,
+            value: 300,
             type: "number"
         },
         height: {
@@ -90,9 +90,39 @@ export const TKinter_Entry = {
             type: "color"
         },
         justify: {
-            value: "LEFT",
+            value: "left",
             type: "select",
-            possible_options: ["LEFT", "CENTER", "RIGHT"]
+            possible_options: ["left", "center", "right"]
+        }
+    }
+}
+
+export const TKinter_Text = {
+    name: "Text",
+    config: {
+        posX: {
+            value: 20,
+            type: "number"
+        },
+        posY: {
+            value: 20,
+            type: "number"
+        },
+        width: {
+            value: 300,
+            type: "number"
+        },
+        height: {
+            value: 300,
+            type: "number"
+        },
+        background: {
+            value: "#FFFFFF",
+            type: "color"
+        },
+        foreground: {
+            value: "#000000",
+            type: "color"
         }
     }
 }

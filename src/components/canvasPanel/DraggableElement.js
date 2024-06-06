@@ -70,7 +70,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
 
     return (
         <div
-            className={`draggable-${element.name} text-center text-nowrap ${ isSelected ? "selected_element" : "" }`}
+            className={`draggable-${element.name} text-nowrap ${ isSelected ? "selected_element" : "" }`}
             style={{
                 left: Number(element.config.posX.value),
                 top: Number(element.config.posY.value),
@@ -79,7 +79,8 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
                 height: `${element.config.height.value}px`,
                 zIndex: `${element.name === "Window" ? 100 : 200}`,
                 backgroundColor: `${element.config.background?.value || "#FFFFFF"}`,
-                color: `${element.config.foreground?.value || "#000000"}`
+                color: `${element.config.foreground?.value || "#000000"}`,
+                textAlign: `${element.config.justify?.value || "center"}`,
             }}
             draggable
             onDragStart={handleDragStart}
