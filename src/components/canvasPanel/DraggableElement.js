@@ -27,7 +27,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
 
         // Calculate the element corners positions
         const leftUp_corner_pos  = e.clientX - element_panel.offsetWidth - offset.x;
-        const rightUp_corner_pos = leftUp_corner_pos + element.config.width + margin_element
+        const rightUp_corner_pos = leftUp_corner_pos + element.config.width.value + margin_element
 
         let positionX = 0;
         const positionY = e.clientY - offset.y
@@ -38,7 +38,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         }
         // Element has left the bounds on the right
         else if (rightUp_corner_pos >= canvas_panel.offsetWidth) {
-            positionX = canvas_panel.offsetWidth - element.config.width - margin_element
+            positionX = canvas_panel.offsetWidth - element.config.width.value - margin_element
         }
         // Element is within bounds
         else {
@@ -60,8 +60,8 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         // Set the element position configuration
         const new_config = {
             ...element.config,
-            "posX": Number( positionX.toFixed(2) ),
-            "posY": Number( positionY.toFixed(2) ),
+            "posX": { value: Number( positionX.toFixed(2) ), type: "number" },
+            "posY": { value: Number( positionY.toFixed(2) ), type: "number" },
         }
 
         // Update the element configuration
@@ -72,19 +72,21 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         <div
             className={`draggable-${element.name} text-center text-nowrap ${ isSelected ? "selected_element" : "" }`}
             style={{
-                left: Number(element.config.posX),
-                top: Number(element.config.posY),
+                left: Number(element.config.posX.value),
+                top: Number(element.config.posY.value),
                 position: 'absolute',
-                width: `${element.config.width}px`,
-                height: `${element.config.height}px`,
-                zIndex: `${element.name === "Window" ? 100 : 200}`
+                width: `${element.config.width.value}px`,
+                height: `${element.config.height.value}px`,
+                zIndex: `${element.name === "Window" ? 100 : 200}`,
+                backgroundColor: `${element.config.background?.value || "#FFFFFF"}`,
+                color: `${element.config.foreground?.value || "#000000"}`
             }}
             draggable
             onDragStart={handleDragStart}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
         >
-            { element.config.textContent || element.name }
+            { element.config.textContent?.value || element.name }
         </div>
     );
 }

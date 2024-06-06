@@ -13,10 +13,16 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
 
     // Update the config when the input is not on focus
     const handleBlur = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type } = e.target;
 
-        const newValue = isNaN( Number(value) ) ? value : Number( value );
-        const newConfig = { ...config, [name]: newValue }
+        const newValue = (type === "number") ? Number( value ) : value;
+        const newConfig = {
+            ...config,
+            [name]: {
+                value: newValue,
+                type: type
+            }
+        }
 
         setConfig(newConfig)
         onUpdateConfig(newConfig);
@@ -24,27 +30,48 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog }) {
 
     // Update the input value based on the configuration
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type } = e.target;
 
-        const newValue = isNaN( Number(value) ) ? value : Number( value );
+        const newValue = (type === "number") ? Number( value ) : value;
         const new_config = {
             ...config,
-            [name]: newValue
+            [name]: {
+                value: newValue,
+                type: type
+            }
         }
         setConfig( new_config );
     };
 
     // Return the corresponding input element
     const displayInput = (attribute, index) => {
+        const { value, type, possible_options } = config[attribute]
+
+        if (type === "select") {
+            return (
+                <label key={index} style={{ width: "100%" }}>
+                    {attribute.charAt(0).toUpperCase() + attribute.slice(1)}
+                    <select id={`${attribute}-select`} style={{ width: "100%" }}>
+                        {
+                            possible_options.map((opt) => (
+                                <option value={opt}>{opt}</option>
+                            ))
+                        }
+                    </select>
+                </label>
+            )
+        }
+
         return (
             <label key={index} style={{ width: "100%" }}>
                 {attribute.charAt(0).toUpperCase() + attribute.slice(1)}
                 <input
+                    type={ type }
                     style={{ width: "100%" }}
-                    name={attribute}
-                    value={`${config[attribute]}` || ''}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                    name={ attribute }
+                    value={`${value}` || ''}
+                    onChange={ handleChange }
+                    onBlur={ handleBlur }
                 />
             </label>
         )
