@@ -1,15 +1,20 @@
+.element-panel-title {
+    color: var(--main-color);
+}
+
 .span_button {
-    border: 2px solid #1f0063;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
 
     user-select: none;
     cursor: pointer;
 }
 
 .span_button:hover {
-    background-color: #00000020;
+    background-color: #0000000f;
 }
 
-.span_button:active {
-    background-color: #00000052;
-}
 
+.documentation-link {
+    color: var(--main-color);
+}

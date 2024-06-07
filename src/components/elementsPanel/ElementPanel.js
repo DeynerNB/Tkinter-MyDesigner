@@ -7,17 +7,17 @@ function ElementPanel({ onAddElement }) {
     return (
         <>
             <div className="panel">
-                <h3>Elementos</h3>
+                <h3 className='element-panel-title'>Elementos</h3>
                 <div className='d-flex flex-column gap-2'>
-                    <span className='w-100 text-center span_button' onClick={() => onAddElement(Tkinter_Window)}>{Tkinter_Window.name}</span>
-                    <span className='w-100 text-center span_button' onClick={() => onAddElement(Tkinter_Button)}>{Tkinter_Button.name}</span>
-                    <span className='w-100 text-center span_button' onClick={() => onAddElement(TKinter_Entry)}>{TKinter_Entry.name}</span>
-                    <span className='w-100 text-center span_button' onClick={() => onAddElement(TKinter_Text)}>{TKinter_Text.name}</span>
-                    <span className='w-100 text-center span_button' onClick={() => onAddElement(Tkinter_Label)}>{Tkinter_Label.name}</span>
+                    <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(Tkinter_Window)}>{Tkinter_Window.name} <span>+</span> </span>
+                    <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(Tkinter_Button)}>{Tkinter_Button.name} <span>+</span> </span>
+                    <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(TKinter_Entry)}>{TKinter_Entry.name} <span>+</span> </span>
+                    <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(TKinter_Text)}>{TKinter_Text.name} <span>+</span> </span>
+                    <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(Tkinter_Label)}>{Tkinter_Label.name} <span>+</span> </span>
                 </div>
             </div>
             <div>
-                <p>Para información más detallada en Tkinter, puede consultar la <a href='https://docs.python.org/es/3/library/tkinter.html' target='_blank'>documentación de Tkinter</a> </p>
+                <p>Para información más detallada en Tkinter, puede consultar la <a href='https://docs.python.org/es/3/library/tkinter.html' className='documentation-link' target='_blank'>documentación de Tkinter</a> </p>
             </div>
         </>
     );
