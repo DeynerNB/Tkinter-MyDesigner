@@ -9,7 +9,8 @@
     position: absolute;
     z-index: 100;
 
-    outline: 2px solid#c90000;
+    outline: 1.5px solid#c90000;
+    border-radius: 3px;
 }
 
 .draggable-Window {
