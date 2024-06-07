@@ -6,7 +6,7 @@ function HeaderPanel() {
     return (
         <div id='header-container'>
             <div className='header-title-container d-flex justify-content-between'>
-                <h1>TkinterSketch</h1>
+                <h1>Tkinter MyDesigner</h1>
                 <a href='https://github.com/DeynerNB' target='_blank' className='header-title-link fs-5'>
                     <span className='pe-1'>Hecho por DeynerNB</span>
                     <i className="fa-brands fa-github"></i>
