@@ -138,14 +138,6 @@ export const Tkinter_Label = {
             value: 20,
             type: "number"
         },
-        width: {
-            value: 100,
-            type: "number"
-        },
-        height: {
-            value: 35,
-            type: "number"
-        },
         textContent: {
             value: "",
             type: "text"

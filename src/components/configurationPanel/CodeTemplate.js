@@ -39,8 +39,8 @@ export const generateWindowCode = (config) => {
 
 export const generateElementCode = (config, element_id, originX, originY, type) => {
     let code = `${element_id} = ${type}(`
-    const e_width  = config.width.value
-    const e_height = config.height.value
+    const e_width  = config.width?.value || -1
+    const e_height = config.height?.value || -1
 
     // Set the options
     code += extractConfig(config, type)
@@ -48,8 +48,12 @@ export const generateElementCode = (config, element_id, originX, originY, type) 
     // Place the element
     const positionX = config.posX.value - originX
     const positionY = config.posY.value - originY
-    code += `\n${element_id}.place( x=${positionX.toFixed(2)}, y=${positionY.toFixed(2)}, width=${e_width}, height=${e_height} )\n`
+    code += `\n${element_id}.place( x=${positionX.toFixed(2)}, y=${positionY.toFixed(2)}`
 
-    code += `\n`
+    if (e_width !== -1 && e_height !== -1) {
+        code += `, width=${e_width}, height=${e_height}`
+    }
+
+    code += ` )\n\n`
     return code
 }

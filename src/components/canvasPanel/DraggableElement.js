@@ -25,9 +25,11 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
     const calculateElementPosition = (e) => {
         const margin_element = 20 + 5;
 
+        const elem_width = (element.config.width) ? element.config.width.value : e.target.offsetWidth;
+
         // Calculate the element corners positions
         const leftUp_corner_pos  = e.clientX - element_panel.offsetWidth - offset.x;
-        const rightUp_corner_pos = leftUp_corner_pos + element.config.width.value + margin_element
+        const rightUp_corner_pos = leftUp_corner_pos + elem_width + margin_element
 
         let positionX = 0;
         const positionY = e.clientY - offset.y
@@ -38,7 +40,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         }
         // Element has left the bounds on the right
         else if (rightUp_corner_pos >= canvas_panel.offsetWidth) {
-            positionX = canvas_panel.offsetWidth - element.config.width.value - margin_element
+            positionX = canvas_panel.offsetWidth - elem_width - margin_element
         }
         // Element is within bounds
         else {
@@ -68,20 +70,39 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         onElementMoveConfig( new_config )
     };
 
+    // Set the element style
+    const setElementStyle = (config) => {
+        // Default element style
+        let style = {
+            position: 'absolute',
+            left: Number(config.posX.value),
+            top: Number(config.posY.value),
+            zIndex: `${element.name === "Window" ? 100 : 200}`,
+            textAlign: "center"
+        }
+        if (config.width) {
+            style.width = `${config.width.value}px`;
+        }
+        if (config.height) {
+            style.height = `${config.height.value}px`;
+        }
+        if (config.background) {
+            style.backgroundColor = `${config.background.value}`;
+        }
+        if (config.foreground) {
+            style.color = `${config.foreground.value}`;
+        }
+        if (config.justify) {
+            style.textAlign = `${config.justify.value}`;
+        }
+
+        return style
+    }
+
     return (
         <div
             className={`draggable-${element.name} text-nowrap ${ isSelected ? "selected_element" : "" }`}
-            style={{
-                left: Number(element.config.posX.value),
-                top: Number(element.config.posY.value),
-                position: 'absolute',
-                width: `${element.config.width.value}px`,
-                height: `${element.config.height.value}px`,
-                zIndex: `${element.name === "Window" ? 100 : 200}`,
-                backgroundColor: `${element.config.background?.value || "#ffffff"}`,
-                color: `${element.config.foreground?.value || "#000000"}`,
-                textAlign: `${element.config.justify?.value || "center"}`,
-            }}
+            style={ setElementStyle( element.config ) }
             draggable
             onDragStart={handleDragStart}
             onDrag={handleDrag}
