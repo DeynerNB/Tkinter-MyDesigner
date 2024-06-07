@@ -3,6 +3,7 @@ import ElementPanel from './components/elementsPanel/ElementPanel';
 import Canvas from './components/canvasPanel/Canvas';
 import ConfigPanel from './components/configurationPanel/ConfigPanel';
 import CodeDisplay from './components/configurationPanel/CodeDisplay';
+import HeaderPanel from './components/headerPanel/HeaderPanel.js';
 import './App.css';
 
 function App() {
@@ -88,6 +89,7 @@ function App() {
 
     return (
         <div className="container-fluid vh-100">
+            <HeaderPanel/>
             <div className='row h-100'>
                 <div className='col pt-2 panel-tkinter d-flex flex-column justify-content-between' id='element-panel' style={{ minWidth: "170px" }}>
                     <ElementPanel onAddElement={addElement} />

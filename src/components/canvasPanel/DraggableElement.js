@@ -7,6 +7,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
 
     const element_panel = document.getElementById("element-panel")
     const canvas_panel = document.getElementById("canvas-panel")
+    const header_panel = document.getElementById("header-container")
 
     const handleDrag = (e) => {
         e.preventDefault();
@@ -32,7 +33,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         const rightUp_corner_pos = leftUp_corner_pos + elem_width + margin_element
 
         let positionX = 0;
-        const positionY = e.clientY - offset.y
+        const positionY = e.clientY - offset.y - header_panel.offsetHeight + window.scrollY
 
         // Element has left the bounds on the left
         if (leftUp_corner_pos <= 0) {

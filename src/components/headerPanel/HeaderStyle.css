@@ -1,0 +1,12 @@
+.header-title-container {
+    color: var(--main-color);
+}
+
+.header-title-link {
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.header-title-link:hover {
+    text-decoration: underline;
+}
