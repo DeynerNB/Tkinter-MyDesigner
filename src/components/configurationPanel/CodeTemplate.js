@@ -1,6 +1,5 @@
 const extractConfig = (config, defaultTextContent = "") => {
     let code = ``;
-    console.log( config )
 
     if (config.textContent) {
         code += ` text="${config.textContent.value || defaultTextContent}",`;
