@@ -27,13 +27,15 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         const margin_element = 20 + 5;
 
         const elem_width = (element.config.width) ? element.config.width.value : e.target.offsetWidth;
+        const elem_height = (element.config.height) ? element.config.height.value : e.target.offsetHeight;
 
         // Calculate the element corners positions
         const leftUp_corner_pos  = e.clientX - element_panel.offsetWidth - offset.x;
+        const leftDown_corner_pos = leftUp_corner_pos + elem_height
         const rightUp_corner_pos = leftUp_corner_pos + elem_width + margin_element
 
         let positionX = 0;
-        const positionY = e.clientY - offset.y - header_panel.offsetHeight + window.scrollY
+        let positionY = e.clientY - header_panel.offsetHeight - offset.y + window.scrollY;
 
         // Element has left the bounds on the left
         if (leftUp_corner_pos <= 0) {
@@ -47,6 +49,9 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         else {
             positionX = leftUp_corner_pos
         }
+
+        // Element has left the upper-bound
+        positionY = ( positionY <= 0 ) ? 0 : positionY
 
         return { positionX, positionY }
     }
