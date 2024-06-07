@@ -12,8 +12,12 @@
     border-radius: 4px;
 }
 
+.code-display {
+    color: var(--main-color);
+    border-radius: 5px;
+}
 .code-display-container {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
 
@@ -35,6 +39,10 @@
     cursor: pointer;
 
     font-size: 28px;
+    transition: transform 0.2s ease-in-out;
+}
+.icon-close:hover {
+    transform: scale(1.1);
 }
 
 .configuration-btn {

@@ -83,7 +83,7 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
 
     return (
         <div className='code-display-container d-flex justify-content-center align-items-center'>
-            <div className='code-display w-50 p-3 bg-light position-relative'>
+            <div className='code-display w-75 p-3 bg-light position-relative'>
                 <div className='code-display-icon-container'>
                     <span className="material-symbols-outlined icon-close" onClick={() => codeDisplayDialog( false )}>close</span>
                 </div>
