@@ -1,3 +1,17 @@
+.configuration-title {
+    color: var(--main-color);
+}
+
+.configuration-input-label {
+    color: var(--secondary-color);
+}
+
+.configuration-input {
+    outline: none;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+}
+
 .code-display-container {
     position: absolute;
     width: 100vw;
@@ -21,4 +35,21 @@
     cursor: pointer;
 
     font-size: 28px;
+}
+
+.configuration-btn {
+    background-color: transparent;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    outline: none;
+}
+
+.delete-btn {
+    border-color: var(--delete-color);
+    color: var(--delete-color);
+}
+.info-btn {
+    background-color: var(--secondary-color);
+    border-color: var(--main-color);
+    color: var(--main-color);
 }

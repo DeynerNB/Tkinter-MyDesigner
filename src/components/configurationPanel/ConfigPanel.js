@@ -55,11 +55,11 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelecte
         }
 
         return (
-            <label key={index} style={{ width: "100%" }}>
+            <label key={index} className='configuration-input-label w-100'>
                 {attribute.charAt(0).toUpperCase() + attribute.slice(1)}
                 <input
                     type={ type }
-                    style={{ width: "100%" }}
+                    className='configuration-input w-100 p-1'
                     name={ attribute }
                     value={`${value}` || ''}
                     onChange={ handleChange }
@@ -74,20 +74,18 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelecte
                 (element) ?
                 (
                     <div>
-                        <h4>Configuración de {element.name}</h4>
+                        <h4 className='configuration-title'>Configuración de {element.name}</h4>
                         <div>
                             { Object.keys(config).map((key, index) => displayInput(key, index)) }
                         </div>
                     </div>
                 )
                 :
-                (
-                    <div className="panel d-flex h-100 justify-content-center align-items-center text-center">Selecciona un elemento</div>
-                )
+                ( <div className="d-flex h-100 justify-content-center align-items-center text-center configuration-title">Selecciona un elemento</div> )
             }
             <div>
-                <button className='w-100 mb-2' onClick={() => deleteSelectedElement()}>Eliminar elemento</button>
-                <button className='w-100 mb-2' onClick={() => codeDisplayDialog(true)}>Generar código</button>
+                <button className='w-100 mb-2 py-1 configuration-btn delete-btn' onClick={() => deleteSelectedElement()}>Eliminar elemento</button>
+                <button className='w-100 mb-2 py-1 configuration-btn info-btn' onClick={() => codeDisplayDialog(true)}>Generar código</button>
             </div>
         </div>
     );
