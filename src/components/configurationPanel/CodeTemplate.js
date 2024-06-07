@@ -13,6 +13,9 @@ const extractConfig = (config, defaultTextContent = "") => {
     if (config.justify) {
         code += ` justify="${config.justify.value}",`;
     }
+    if (config.fontSize) {
+        code += ` font=("Inter", ${config.fontSize.value}),`;
+    }
 
     // Remove the last caracter (,)
     return (code.slice(0, -1) + " )");

@@ -101,6 +101,9 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         if (config.justify) {
             style.textAlign = `${config.justify.value}`;
         }
+        if (config.fontSize) {
+            style.fontSize = `${config.fontSize.value}px`;
+        }
 
         return style
     }

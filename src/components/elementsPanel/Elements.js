@@ -149,6 +149,9 @@ export const Tkinter_Label = {
         foreground: {
             value: "#000000",
             type: "color"
+        },
+        fontSize: {
+            value: 18
         }
     }
 }
