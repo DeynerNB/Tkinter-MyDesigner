@@ -33,12 +33,12 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelecte
 
         if (type === "select") {
             return (
-                <label key={index} style={{ width: "100%" }}>
+                <label key={index} className='configuration-input-label w-100'>
                     {attribute.charAt(0).toUpperCase() + attribute.slice(1)}
                     <select
+                        className='w-100'
                         id={`${attribute}-select`}
                         name={ attribute }
-                        style={{ width: "100%" }}
                         onChange={ handleChange }
                     >
                         {
