@@ -58,6 +58,10 @@ export const Tkinter_Button = {
         foreground: {
             value: "#000000",
             type: "color"
+        },
+        fontSize: {
+            value: 18,
+            type: "number"
         }
     }
 }
@@ -93,6 +97,10 @@ export const TKinter_Entry = {
             value: "left",
             type: "select",
             possible_options: ["left", "center", "right"]
+        },
+        fontSize: {
+            value: 18,
+            type: "number"
         }
     }
 }
@@ -123,6 +131,10 @@ export const TKinter_Text = {
         foreground: {
             value: "#000000",
             type: "color"
+        },
+        fontSize: {
+            value: 18,
+            type: "number"
         }
     }
 }
@@ -151,7 +163,8 @@ export const Tkinter_Label = {
             type: "color"
         },
         fontSize: {
-            value: 18
+            value: 18,
+            type: "number"
         }
     }
 }
