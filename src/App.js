@@ -88,16 +88,18 @@ function App() {
     }
 
     return (
-        <div className="container-fluid vh-100">
-            <HeaderPanel/>
+        <div className="container-fluid vh-100 default-bg">
+            <div>
+                <HeaderPanel/>
+            </div>
             <div className='row h-100'>
-                <div className='col pt-2 panel-tkinter d-flex flex-column justify-content-between' id='element-panel' style={{ minWidth: "170px" }}>
+                <div className='default-bg col pt-2 panel-tkinter d-flex flex-column justify-content-between' id='element-panel' style={{ minWidth: "170px" }}>
                     <ElementPanel onAddElement={addElement} />
                 </div>
-                <div className='col-8 panel-tkinter' id='canvas-panel'>
+                <div className='bg-light col-8 panel-tkinter' id='canvas-panel'>
                     <Canvas elements={elements} setSelectElementKey={selectElement} onElementMoveConfig={updateConfig} selectedElementKey={selectedElementKey} />
                 </div>
-                <div className='col pt-2 panel-tkinter ' style={{ minWidth: "170px" }}>
+                <div className='default-bg col pt-2 panel-tkinter ' style={{ minWidth: "170px" }}>
                     <ConfigPanel element={elements[selectedElementKey]} onUpdateConfig={updateConfig} codeDisplayDialog={codeDisplayDialog} deleteSelectedElement={deleteSelectedElement} />
                 </div>
             </div>

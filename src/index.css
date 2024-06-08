@@ -2,6 +2,7 @@
   --main-color: #00487C;
   --secondary-color: #5FA5F7;
   --delete-color: #B30000;
+  --panel-background: #f3eced;
 }
 
 body {
@@ -17,4 +18,8 @@ body {
 code {
   font-family: "Montserrat", source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.default-bg {
+  background-color: var(--panel-background);
 }

@@ -6,7 +6,7 @@ import "./ElementPanel.css"
 function ElementPanel({ onAddElement }) {
     return (
         <>
-            <div className="panel">
+            <div>
                 <h3 className='element-panel-title'>Elementos</h3>
                 <div className='d-flex flex-column gap-2'>
                     <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(Tkinter_Window)}>{Tkinter_Window.name} <span>+</span> </span>
