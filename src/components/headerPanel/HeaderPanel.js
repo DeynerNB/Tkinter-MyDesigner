@@ -7,10 +7,12 @@ function HeaderPanel() {
         <div id='header-container'>
             <div className='header-title-container d-flex justify-content-between'>
                 <h1 className='py-2'>Tkinter MyDesigner</h1>
-                <a href='https://github.com/DeynerNB' target='_blank' className='header-title-link fs-5'>
-                    <span className='pe-1'>Hecho por DeynerNB</span>
-                    <i className="fa-brands fa-github"></i>
-                </a>
+                <div>
+                    <a href='https://github.com/DeynerNB' target='_blank' className='header-title-link fs-5'>
+                        <span className='pe-1'>Hecho por DeynerNB</span>
+                        <i className="fa-brands fa-github"></i>
+                    </a>
+                </div>
             </div>
             <p className='m-0'>Este es un pequeño proyecto para simplificar el proceso de construir interfaces con Tkinter</p>
             <p className='m-0'>Solo debes seleccionar el objeto que deseas crear en el panel de "Elementos" y seleccionarlo para moverlo o cambiar aspectos de su configuración.</p>
