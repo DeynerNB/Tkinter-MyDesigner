@@ -84,8 +84,8 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelecte
                 ( <div className="d-flex h-100 justify-content-center align-items-center text-center configuration-title">Selecciona un elemento</div> )
             }
             <div>
-                <button className='w-100 mb-2 py-1 configuration-btn delete-btn' onClick={() => deleteSelectedElement()}>Eliminar elemento</button>
-                <button className='w-100 mb-2 py-1 configuration-btn info-btn' onClick={() => codeDisplayDialog(true)}>Generar código</button>
+                <button className='w-100 mb-2 py-1 btn btn-outline-danger' onClick={() => deleteSelectedElement()}>Eliminar elemento</button>
+                <button className='w-100 mb-2 py-1 btn btn-outline-primary' onClick={() => codeDisplayDialog(true)}>Generar código</button>
             </div>
         </div>
     );
