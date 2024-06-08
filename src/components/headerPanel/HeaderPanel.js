@@ -8,7 +8,7 @@ function HeaderPanel() {
             <div className='header-title-container d-flex justify-content-between'>
                 <h1 className='py-2'>Tkinter MyDesigner</h1>
                 <div>
-                    <a href='https://github.com/DeynerNB' target='_blank' className='header-title-link fs-5'>
+                    <a href='https://github.com/DeynerNB' target='_blank' rel="noopener noreferrer" className='header-title-link fs-5'>
                         <span className='pe-1'>Hecho por DeynerNB</span>
                         <i className="fa-brands fa-github"></i>
                     </a>

@@ -17,7 +17,7 @@ function ElementPanel({ onAddElement }) {
                 </div>
             </div>
             <div>
-                <p>Para información más detallada en Tkinter, puede consultar la <a href='https://docs.python.org/es/3/library/tkinter.html' className='documentation-link' target='_blank'>documentación de Tkinter</a> </p>
+                <p>Para información más detallada en Tkinter, puede consultar la <a href='https://docs.python.org/es/3/library/tkinter.html' className='documentation-link' target='_blank' rel="noopener noreferrer">documentación de Tkinter</a> </p>
             </div>
         </>
     );
