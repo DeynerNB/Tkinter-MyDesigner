@@ -96,7 +96,7 @@ function App() {
                 <div className='default-bg col pt-2 panel-tkinter d-flex flex-column justify-content-between' id='element-panel' style={{ minWidth: "170px" }}>
                     <ElementPanel onAddElement={addElement} />
                 </div>
-                <div className='bg-light col-8 panel-tkinter' id='canvas-panel'>
+                <div className='bg-dark col-8 panel-tkinter p-0' id='canvas-panel'>
                     <Canvas elements={elements} setSelectElementKey={selectElement} onElementMoveConfig={updateConfig} selectedElementKey={selectedElementKey} />
                 </div>
                 <div className='default-bg col pt-2 panel-tkinter ' style={{ minWidth: "170px" }}>
