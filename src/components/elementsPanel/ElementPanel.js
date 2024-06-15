@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Tkinter_Window, Tkinter_Button, TKinter_Entry, TKinter_Text, Tkinter_Label } from './Elements';
+import { Tkinter_Window, Tkinter_Button, TKinter_Entry, TKinter_Text, Tkinter_Label, Tkinter_ComboBox } from './Elements';
 import "./ElementPanel.css"
 
 function ElementPanel({ onAddElement }) {
@@ -14,6 +14,7 @@ function ElementPanel({ onAddElement }) {
                     <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(TKinter_Entry)}>{TKinter_Entry.name} <span>+</span> </span>
                     <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(TKinter_Text)}>{TKinter_Text.name} <span>+</span> </span>
                     <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(Tkinter_Label)}>{Tkinter_Label.name} <span>+</span> </span>
+                    <span className='w-100 px-1 d-flex justify-content-between span_button' onClick={() => onAddElement(Tkinter_ComboBox)}>{Tkinter_ComboBox.name} <span>+</span> </span>
                 </div>
             </div>
             <div>

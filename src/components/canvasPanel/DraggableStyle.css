@@ -13,34 +13,30 @@
     border-radius: 3px;
 }
 
-.draggable-Window {
+.draggable-Window,
+.draggable-Button,
+.draggable-Entry,
+.draggable-Text,
+.draggable-Combobox
+{
     outline: 2px solid #d1d1d1;
+    cursor: move;
+}
+
+.draggable-Window {
     min-width: 100px;
     min-height: 100px;
-
-    cursor: move;
 }
 
-.draggable-Button {
-    outline: 2px solid #6b6b6b;
-    /* min-width: 100px;
-    min-height: 20px; */
-
-    cursor: move;
+.draggable-Combobox {
+    padding: 0 5px;
+    text-align: left !important;
+    min-width: 150px;
 }
+.draggable-Combobox::before {
+    content: ">";
 
-.draggable-Entry {
-    outline: 2px solid #6b6b6b;
-    /* min-width: 100px;
-    min-height: 20px; */
-
-    cursor: move;
-}
-
-.draggable-Text {
-    outline: 2px solid #6b6b6b;
-    /* min-width: 100px;
-    min-height: 20px; */
-
-    cursor: move;
+    position: absolute;
+    right: 10px;
+    transform: rotateZ(90deg);
 }

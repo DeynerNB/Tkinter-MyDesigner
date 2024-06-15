@@ -1,5 +1,6 @@
 export const Tkinter_Window = {
     name: "Window",
+    from: "Tk",
     config: {
         posX: {
             value: 20,
@@ -30,6 +31,7 @@ export const Tkinter_Window = {
 
 export const Tkinter_Button = {
     name: "Button",
+    from: "Tk",
     config: {
         posX: {
             value: 20,
@@ -68,6 +70,7 @@ export const Tkinter_Button = {
 
 export const TKinter_Entry = {
     name: "Entry",
+    from: "Tk",
     config: {
         posX: {
             value: 20,
@@ -107,6 +110,7 @@ export const TKinter_Entry = {
 
 export const TKinter_Text = {
     name: "Text",
+    from: "Tk",
     config: {
         posX: {
             value: 20,
@@ -141,6 +145,7 @@ export const TKinter_Text = {
 
 export const Tkinter_Label = {
     name: "Label",
+    from: "Tk",
     config: {
         posX: {
             value: 20,
@@ -153,6 +158,42 @@ export const Tkinter_Label = {
         textContent: {
             value: "",
             type: "text"
+        },
+        background: {
+            value: "#FFFFFF",
+            type: "color"
+        },
+        foreground: {
+            value: "#000000",
+            type: "color"
+        },
+        fontSize: {
+            value: 18,
+            type: "number"
+        }
+    }
+}
+
+export const Tkinter_ComboBox = {
+    name: "Combobox",
+    from: "ttk",
+    class_name: "TCombobox",
+    config: {
+        posX: {
+            value: 20,
+            type: "number"
+        },
+        posY: {
+            value: 20,
+            type: "number"
+        },
+        width: {
+            value: 200,
+            type: "number"
+        },
+        items: {
+            value: "",
+            type: "textarea"
         },
         background: {
             value: "#FFFFFF",

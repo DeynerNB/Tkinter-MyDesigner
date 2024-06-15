@@ -64,6 +64,15 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelecte
                     value={`${value}` || ''}
                     onChange={ handleChange }
                 />
+                {
+                    type === "textarea" &&
+                    (
+                        <>
+                            <span className='d-block' style={{ fontSize: "14px" }}>Separe los elementos utilizando ","</span>
+                            <span className='d-block' style={{ fontSize: "14px" }}>Ejemplo: Manzana, Uva, Fresa</span>
+                        </>
+                    )
+                }
             </label>
         )
     }
