@@ -3,6 +3,8 @@ import React from 'react';
 import { Tkinter_Window, Tkinter_Button, TKinter_Entry, TKinter_Text, Tkinter_Label, Tkinter_ComboBox } from './Elements';
 import "./ElementPanel.css"
 
+import PropTypes from "prop-types"
+
 function ElementPanel({ onAddElement }) {
     return (
         <>
@@ -22,6 +24,10 @@ function ElementPanel({ onAddElement }) {
             </div>
         </>
     );
+}
+
+ElementPanel.propTypes = {
+    onAddElement: PropTypes.func
 }
 
 export default ElementPanel;

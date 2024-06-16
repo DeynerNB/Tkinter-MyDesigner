@@ -13,4 +13,15 @@
 
 .board-control {
     width: 25px;
+    font-size: 18px;
+    font-weight: 600;
+
+    border: none;
+
+    outline: 2px solid var(--main-color);
+    background-color: #ffffff;
+    color: var(--main-color);
+}
+.board-control:hover {
+    background-color: #b8b8b8;
 }

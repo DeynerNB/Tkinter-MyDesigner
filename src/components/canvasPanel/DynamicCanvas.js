@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DraggableElement from './DraggableElement';
 import "./Canvas.css"
 
+import PropTypes from "prop-types"
+
 function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, selectedElementKey }) {
 
     // Set the origin position of the canvas
@@ -98,7 +100,7 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
     }
 
     const generateElements = () => {
-        return Object.entries(elements).map(([key, value], index) => (
+        return Object.entries(elements).map(([key, value]) => (
             <div key={key} onMouseDown={(e) => { e.stopPropagation(); setSelectElementKey( key ); }}>
                 <DraggableElement
                     element={value}
@@ -106,7 +108,7 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
                     onElementMoveConfig={onElementMoveConfig}
                     zoomFactor={scaleValue}
                     boardOrigin={origin}
-                    initialPosition={() => setElementPosition()} />
+                    initialPosition={setElementPosition()} />
             </div>
         ))
     }
@@ -134,12 +136,19 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
             </div>
 
             {/* Board controls */}
-            <div className='position-absolute d-flex gap-1' id='board-controls-container'>
+            <div className='position-absolute d-flex gap-2' id='board-controls-container'>
                 <button className='board-control' onClick={zoomIn} >+</button>
                 <button className='board-control' onClick={zoomOut} >-</button>
             </div>
         </div>
     );
+}
+
+DynamicCanvas.propTypes = {
+    elements: PropTypes.object,
+    setSelectElementKey: PropTypes.func,
+    onElementMoveConfig: PropTypes.func,
+    selectedElementKey: PropTypes.string
 }
 
 export default DynamicCanvas;

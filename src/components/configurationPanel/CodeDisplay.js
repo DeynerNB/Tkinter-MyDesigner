@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { generateImportLine, generateWindowCode, generateElementCode, generateFinalCode } from "./CodeTemplate"
 import "./CodeDisplayStyle.css"
 
+import PropTypes from "prop-types"
+
 function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
     // Variable to store the resulted code
     const [resultCode, setResultCode] = useState("")
@@ -28,7 +30,7 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
         let code = ''
 
         // Check if exists a window to be the first code
-        Object.entries(elements).map(([key, value], index) => {
+        Object.entries(elements).map(([, value]) => {
             const { name, config } = value;
 
             if (name === "Window") {
@@ -38,6 +40,7 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
                 setHasWindow( true )
                 code += generateWindowCode(config);
             }
+            return value;
         })
 
         // Show message for when the windows has not been generated
@@ -47,7 +50,7 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
         }
 
         // Go throught all the elements generating its respective code
-        Object.entries(elements).map(([key, value], index) => {
+        Object.entries(elements).map(([key, value]) => {
             const { name, from, class_name, config } = value;
 
             // Import the ttk library if necessary
@@ -74,6 +77,7 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
             else if (name === "Combobox") {
                 code += generateElementCode(config, key, originX, originY, "Combobox", from, class_name);
             }
+            return value;
         })
         // Set the imports based on the elements generated
         for (const imp of importObject) {
@@ -121,6 +125,12 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
             </div>
         </div>
     );
+}
+
+CodeDisplay.propTypes = {
+    codeDisplayDialog: PropTypes.func,
+    elements: PropTypes.object,
+    deactivateSelection: PropTypes.func
 }
 
 export default CodeDisplay;

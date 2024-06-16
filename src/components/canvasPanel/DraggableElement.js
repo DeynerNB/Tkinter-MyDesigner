@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import "./DraggableStyle.css"
 
+import PropTypes from "prop-types"
+
 function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor, boardOrigin, initialPosition }) {
 
     // Z-Index when dragging
@@ -59,7 +61,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
     };
 
     // Update the element new position
-    const handleDragEnd  = (e) => {
+    const handleDragEnd  = () => {
         // If the element is not selected := Cannot be drag
         if (!isSelected || !dragging) {
             return;
@@ -121,6 +123,15 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
             { element.config.textContent?.value || element.name }
         </div>
     );
+}
+
+DraggableElement.propTypes = {
+    element: PropTypes.object,
+    isSelected: PropTypes.bool,
+    onElementMoveConfig: PropTypes.func,
+    zoomFactor: PropTypes.number,
+    boardOrigin: PropTypes.object,
+    initialPosition: PropTypes.object,
 }
 
 export default DraggableElement;

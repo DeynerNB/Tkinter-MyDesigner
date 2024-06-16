@@ -1,6 +1,8 @@
 // src/components/ConfigPanel.js
 import React, { useState, useEffect } from 'react';
 
+import PropTypes from "prop-types"
+
 function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelectedElement }) {
     const [config, setConfig] = useState(element ? element.config : {});
 
@@ -68,7 +70,7 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelecte
                     type === "textarea" &&
                     (
                         <>
-                            <span className='d-block' style={{ fontSize: "14px" }}>Separe los elementos utilizando ","</span>
+                            <span className='d-block' style={{ fontSize: "14px" }}>Separe los elementos utilizando <b>,</b></span>
                             <span className='d-block' style={{ fontSize: "14px" }}>Ejemplo: Manzana, Uva, Fresa</span>
                         </>
                     )
@@ -98,6 +100,13 @@ function ConfigPanel({ element, onUpdateConfig, codeDisplayDialog, deleteSelecte
             </div>
         </div>
     );
+}
+
+ConfigPanel.propTypes = {
+    element: PropTypes.object,
+    onUpdateConfig: PropTypes.func,
+    codeDisplayDialog: PropTypes.func,
+    deleteSelectedElement: PropTypes.func
 }
 
 export default ConfigPanel;

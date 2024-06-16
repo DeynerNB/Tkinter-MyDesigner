@@ -15,8 +15,8 @@ function HeaderPanel() {
                 </div>
             </div>
             <p className='m-0'>Este es un pequeño proyecto para simplificar el proceso de construir interfaces con Tkinter</p>
-            <p className='m-0'>Solo debes seleccionar el objeto que deseas crear en el panel de "Elementos" y seleccionarlo para moverlo o cambiar aspectos de su configuración.</p>
-            <p className='m-0 pb-3'>Una vez finalizado el diseño, simplemente presionar el botón de "Generar código"</p>
+            <p className='m-0'>Solo debes seleccionar el objeto que deseas crear en el panel de <i>Elementos</i> y seleccionarlo para moverlo o cambiar aspectos de su configuración.</p>
+            <p className='m-0 pb-3'>Una vez finalizado el diseño, simplemente presionar el botón de <i>Generar código</i></p>
         </div>
     );
 }
