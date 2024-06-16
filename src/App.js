@@ -6,6 +6,8 @@ import CodeDisplay from './components/configurationPanel/CodeDisplay';
 import HeaderPanel from './components/headerPanel/HeaderPanel.js';
 import './App.css';
 
+import DynamicCanvas from './components/canvasPanel/DynamicCanvas.js';
+
 function App() {
     const [elements, setElements] = useState({});
     const [selectedElementKey, setSelectedElementKey] = useState(null);
@@ -97,7 +99,7 @@ function App() {
                     <ElementPanel onAddElement={addElement} />
                 </div>
                 <div className='bg-dark col-8 panel-tkinter p-0' id='canvas-panel'>
-                    <Canvas elements={elements} setSelectElementKey={selectElement} onElementMoveConfig={updateConfig} selectedElementKey={selectedElementKey} />
+                    <DynamicCanvas elements={elements} setSelectElementKey={selectElement} onElementMoveConfig={updateConfig} selectedElementKey={selectedElementKey} />
                 </div>
                 <div className='default-bg col pt-2 panel-tkinter ' style={{ minWidth: "170px" }}>
                     <ConfigPanel element={elements[selectedElementKey]} onUpdateConfig={updateConfig} codeDisplayDialog={codeDisplayDialog} deleteSelectedElement={deleteSelectedElement} />

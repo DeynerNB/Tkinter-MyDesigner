@@ -1,20 +1,38 @@
 // src/components/DraggableElement.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./DraggableStyle.css"
 
-function DraggableElement({ element, isSelected, onElementMoveConfig }) {
+function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor, boardOrigin }) {
+
+    // Set the origin position for the elements
+    const [ origin, setOrigin ] = useState( boardOrigin );
+
+    // Set the relative position of the grabbing point of an element
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 
-    const element_panel = document.getElementById("element-panel")
-    const canvas_panel = document.getElementById("canvas-panel")
-    const header_panel = document.getElementById("header-container")
+    // Controls the position of the element
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    const handleDrag = (e) => {
-        e.preventDefault();
-    };
+    // Controls when the object is been drag
+    const [dragging, setDragging] = useState(false);
+
+    // Calculate the position of the element
+    const calculateElementPosition = (e) => {
+        const canvas_board = document.getElementById("canvas-board");
+        const board_element = canvas_board.getBoundingClientRect()
+
+        const boardX = Math.floor(board_element.x - origin.x);
+        const boardY = Math.floor(board_element.y - origin.y);
+
+        const positionX = (e.clientX - origin.x - offset.x - boardX) / zoomFactor;
+        const positionY = (e.clientY - origin.y - offset.y - boardY) / zoomFactor;
+
+        return { x: positionX, y: positionY }
+    }
 
     // Calculate the initial offset
     const handleDragStart = (e) => {
+        setDragging(true)
         const rect = e.target.getBoundingClientRect();
         setOffset({
             x: e.clientX - rect.left,
@@ -22,30 +40,37 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         });
     };
 
-    // Calculate the position of the element
-    const calculateElementPosition = (e) => {
-        const positionX = e.clientX - element_panel.offsetWidth - offset.x;
-        const positionY = e.clientY - offset.y;
+    // Update the position when dragging
+    const handleDrag = (e) => {
+        if (!isSelected || !dragging) {
+            return;
+        }
+        // Calculate the new position relative to the grab point
+        const new_position = calculateElementPosition( e )
 
-        return { positionX, positionY }
-    }
+        if (new_position.x < 0 || new_position.y < 0) {
+            e.preventDefault();
+            return;
+        }
+
+        setPosition( new_position )
+        e.preventDefault();
+    };
 
     // Update the element new position
     const handleDragEnd  = (e) => {
         // If the element is not selected := Cannot be drag
-        if (!isSelected) {
+        if (!isSelected || !dragging) {
             return;
         }
-        // Calculate the new position relative to the grab point
-        const { positionX, positionY } = calculateElementPosition( e )
+        setDragging(false)
 
         // Set the element position configuration
         const new_config = {
             ...element.config,
-            "posX": { value: Number( positionX.toFixed(2) ), type: "number" },
-            "posY": { value: Number( positionY.toFixed(2) ), type: "number" },
+            "posX": { value: Number( position.x ), type: "number" },
+            "posY": { value: Number( position.y ), type: "number" },
         }
-
         // Update the element configuration
         onElementMoveConfig( new_config )
     };
@@ -58,7 +83,8 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
             left: Number(config.posX.value),
             top: Number(config.posY.value),
             zIndex: `${element.name === "Window" ? 100 : 200}`,
-            textAlign: "center"
+            textAlign: "center",
+            transformOrigin: "0 0"
         }
         if (config.width) {
             style.width = `${config.width.value}px`;
