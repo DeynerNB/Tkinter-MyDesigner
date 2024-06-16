@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ElementPanel from './components/elementsPanel/ElementPanel';
-import Canvas from './components/canvasPanel/Canvas';
 import ConfigPanel from './components/configurationPanel/ConfigPanel';
 import CodeDisplay from './components/configurationPanel/CodeDisplay';
 import HeaderPanel from './components/headerPanel/HeaderPanel.js';
