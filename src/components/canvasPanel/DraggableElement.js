@@ -114,7 +114,7 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
 
     return (
         <div
-            className={`draggable-${element.name} text-nowrap ${ isSelected ? "selected_element" : "" }`}
+            className={`default-element draggable-${element.name} text-nowrap ${ isSelected ? "selected_element" : "" }`}
             style={ setElementStyle( element.config ) }
             onMouseDown={handleDragStart}
             onMouseMove={handleDrag}

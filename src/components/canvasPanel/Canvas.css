@@ -2,9 +2,9 @@
     width: 2000px;
     height: 2000px;
 
-    background-image: radial-gradient(#5492d9 2px, transparent 2px);
+    background-image: radial-gradient(var(--secondary-color) 2px, transparent 2px);
     background-size: 35px 35px;
-    background-color: #f3eced;
+    background-color: var(--panel-background);
 }
 
 #board-controls-container {

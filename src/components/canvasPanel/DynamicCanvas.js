@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DraggableElement from './DraggableElement';
 import "./Canvas.css"
 
@@ -24,6 +24,9 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
     // Set the initial scroll position
     const [scaleValue, setScaleValue] = useState( 1 );
 
+    const boardRef = useRef(null)
+    const cameraRef = useRef(null)
+
     const header_element = document.getElementById("header-container");
 
     const calculateOrigin = () => {
@@ -36,7 +39,21 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
         })
     }
 
-    useEffect(() => { calculateOrigin() }, [])
+    useEffect(() => {
+        calculateOrigin();
+
+        const boardCenter_X = boardRef.current.offsetWidth / 2;
+        const boardCenter_Y = boardRef.current.offsetHeight / 2;
+
+        const cameraCenter_X = cameraRef.current.offsetWidth / 2;
+        const cameraCenter_Y = cameraRef.current.offsetHeight / 2;
+
+        setPosition({
+            x: -(boardCenter_X - cameraCenter_X),
+            y: -(boardCenter_Y - cameraCenter_Y)
+        })
+
+    }, [])
 
     const onSelectingBoard = (e) => {
         if (e.target.id.includes('canvas-board')) {
@@ -114,7 +131,9 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
     }
 
     return (
-        <div className='position-relative w-100 h-100 overflow-hidden' id='canvas-camera'
+        <div className='position-relative w-100 h-100 overflow-hidden'
+            id='canvas-camera'
+            ref={cameraRef}
             onMouseMove={onDraggingBoard}
             onMouseUp={onFreeingBoard}
             onMouseLeave={onFreeingBoard}
@@ -122,9 +141,8 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
             <div
                 className='position-absolute draggable-canvas'
                 id='canvas-board'
+                ref={boardRef}
                 style={{
-                    width: "2000px",
-                    height: "2000px",
                     top: position.y,
                     left: position.x,
                     transform: `scale(${scaleValue})`,

@@ -13,6 +13,10 @@
     border-radius: 3px;
 }
 
+.default-element {
+    user-select: none;
+}
+
 .draggable-Window,
 .draggable-Button,
 .draggable-Entry,
