@@ -2,19 +2,38 @@
 import React, { useState } from 'react';
 import "./DraggableStyle.css"
 
-function DraggableElement({ element, isSelected, onElementMoveConfig }) {
+function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor, boardOrigin, initialPosition }) {
+
+    // Z-Index when dragging
+    const [ zIndex_value, setZIndex_value ] = useState( 200 )
+
+    // Set the relative position of the grabbing point of an element
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 
-    const element_panel = document.getElementById("element-panel")
-    const canvas_panel = document.getElementById("canvas-panel")
-    const header_panel = document.getElementById("header-container")
+    // Controls the position of the element
+    const [position, setPosition] = useState( initialPosition );
 
-    const handleDrag = (e) => {
-        e.preventDefault();
-    };
+    // Controls when the object is been drag
+    const [dragging, setDragging] = useState(false);
+
+    // Calculate the position of the element
+    const calculateElementPosition = (e) => {
+        const canvas_board = document.getElementById("canvas-board");
+        const board_element = canvas_board.getBoundingClientRect()
+
+        const boardX = Math.floor(board_element.x - boardOrigin.x);
+        const boardY = Math.floor(board_element.y - boardOrigin.y);
+
+        const positionX = (e.clientX - boardOrigin.x - offset.x - boardX) / zoomFactor;
+        const positionY = (e.clientY - boardOrigin.y - offset.y - boardY) / zoomFactor;
+
+        return { x: positionX.toFixed(2), y: positionY.toFixed(2) }
+    }
 
     // Calculate the initial offset
     const handleDragStart = (e) => {
+        setDragging(true);
+        setZIndex_value( 300 );
         const rect = e.target.getBoundingClientRect();
         setOffset({
             x: e.clientX - rect.left,
@@ -22,56 +41,38 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         });
     };
 
-    // Calculate the position of the element
-    const calculateElementPosition = (e) => {
-        const margin_element = 20 + 5;
-
-        const elem_width = (element.config.width) ? element.config.width.value : e.target.offsetWidth;
-        const elem_height = (element.config.height) ? element.config.height.value : e.target.offsetHeight;
-
-        // Calculate the element corners positions
-        const leftUp_corner_pos  = e.clientX - element_panel.offsetWidth - offset.x;
-        const leftDown_corner_pos = leftUp_corner_pos + elem_height
-        const rightUp_corner_pos = leftUp_corner_pos + elem_width + margin_element
-
-        let positionX = 0;
-        let positionY = e.clientY - header_panel.offsetHeight - offset.y + window.scrollY;
-
-        // Element has left the bounds on the left
-        if (leftUp_corner_pos <= 0) {
-            positionX = 0;
+    // Update the position when dragging
+    const handleDrag = (e) => {
+        if (!isSelected || !dragging) {
+            return;
         }
-        // Element has left the bounds on the right
-        else if (rightUp_corner_pos >= canvas_panel.offsetWidth) {
-            positionX = canvas_panel.offsetWidth - elem_width - margin_element
-        }
-        // Element is within bounds
-        else {
-            positionX = leftUp_corner_pos
+        // Calculate the new position relative to the grab point
+        const new_position = calculateElementPosition( e )
+
+        if (new_position.x < 0 || new_position.y < 0) {
+            e.preventDefault();
+            return;
         }
 
-        // Element has left the upper-bound
-        positionY = ( positionY <= 0 ) ? 0 : positionY
-
-        return { positionX, positionY }
-    }
+        setPosition( new_position )
+        e.preventDefault();
+    };
 
     // Update the element new position
     const handleDragEnd  = (e) => {
         // If the element is not selected := Cannot be drag
-        if (!isSelected) {
+        if (!isSelected || !dragging) {
             return;
         }
-        // Calculate the new position relative to the grab point
-        const { positionX, positionY } = calculateElementPosition( e )
+        setDragging(false)
+        setZIndex_value( 200 );
 
         // Set the element position configuration
         const new_config = {
             ...element.config,
-            "posX": { value: Number( positionX.toFixed(2) ), type: "number" },
-            "posY": { value: Number( positionY.toFixed(2) ), type: "number" },
+            "posX": { value: position.x, type: "number" },
+            "posY": { value: position.y, type: "number" },
         }
-
         // Update the element configuration
         onElementMoveConfig( new_config )
     };
@@ -81,10 +82,11 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         // Default element style
         let style = {
             position: 'absolute',
-            left: Number(config.posX.value),
-            top: Number(config.posY.value),
-            zIndex: `${element.name === "Window" ? 100 : 200}`,
-            textAlign: "center"
+            left: Number(position.x),
+            top: Number(position.y),
+            zIndex: `${element.name === "Window" ? 100 : zIndex_value}`,
+            textAlign: "center",
+            transformOrigin: "0 0"
         }
         if (config.width) {
             style.width = `${config.width.value}px`;
@@ -112,10 +114,9 @@ function DraggableElement({ element, isSelected, onElementMoveConfig }) {
         <div
             className={`draggable-${element.name} text-nowrap ${ isSelected ? "selected_element" : "" }`}
             style={ setElementStyle( element.config ) }
-            draggable
-            onDragStart={handleDragStart}
-            onDrag={handleDrag}
-            onDragEnd={handleDragEnd}
+            onMouseDown={handleDragStart}
+            onMouseMove={handleDrag}
+            onMouseUp={handleDragEnd}
         >
             { element.config.textContent?.value || element.name }
         </div>
