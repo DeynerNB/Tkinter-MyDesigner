@@ -19,9 +19,6 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
     const [rel, setRel] = useState({ x: 0, y: 0 });
 
     // Set the initial scroll position
-    const [initialScroll, setInitialScroll] = useState( null );
-
-    // Set the initial scroll position
     const [scaleValue, setScaleValue] = useState( 1 );
 
     const boardRef = useRef(null)
@@ -30,8 +27,7 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
     const header_element = document.getElementById("header-container");
 
     const calculateOrigin = () => {
-        const canvas_camera = document.getElementById("canvas-camera");
-        const canvas_element = canvas_camera.getBoundingClientRect()
+        const canvas_element = cameraRef.current.getBoundingClientRect()
 
         setOrigin({
             x: canvas_element.x,
@@ -66,17 +62,12 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
             });
             e.preventDefault();
         }
-
-        if (initialScroll == null) {
-            setInitialScroll( window.scrollY )
-        }
     };
 
     const onDraggingBoard = (e) => {
         if (dragging) {
-            const relScroll = initialScroll - window.scrollY;
             const posX = e.clientX - origin.x - rel.x;
-            const posY = e.clientY - origin.y - rel.y - relScroll;
+            const posY = e.clientY - Math.abs(header_element.offsetHeight - window.scrollY) - rel.y;
 
             setPosition({
                 x: posX,
@@ -92,15 +83,22 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
     };
 
     const zoomIn = () => {
+        const value = scaleValue + 0.1;
+        if (value >= 1.5) {
+            return;
+        }
         setScaleValue( scaleValue + 0.1 )
     }
     const zoomOut = () => {
-        setScaleValue( scaleValue - 0.1 )
+        const value = scaleValue - 0.1;
+        if (value <= 0.5) {
+            return;
+        }
+        setScaleValue( value )
     }
 
     const setElementPosition = () => {
-        const canvas_board = document.getElementById("canvas-board");
-        const board_element = canvas_board.getBoundingClientRect()
+        const board_element = boardRef.current.getBoundingClientRect()
 
         let delta_x = 0;
         let delta_y = 0;
