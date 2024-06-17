@@ -10,6 +10,7 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
     const [resultCode, setResultCode] = useState("")
     const [hasWindow, setHasWindow] = useState(false)
     const codeRef = useRef( "" );
+    const copyCodeButtonRef = useRef( null );
 
     // Ttk library has been imported
     let ttk_library = false;
@@ -94,6 +95,9 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
     const copyCodeToClipboard = () => {
         const code = codeRef.current.value;
         navigator.clipboard.writeText( code )
+
+        copyCodeButtonRef.current.classList.add("copied");
+        setTimeout(() => { copyCodeButtonRef.current.classList.remove("copied"); }, 3000);
     }
 
     // Generate the code when display
@@ -114,10 +118,9 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
                     hasWindow &&
                     <div className='text-end'>
                         <button
-                            className='btn btn-outline-primary'
-                            data-bs-toggle="popover"
-                            data-bs-title="Popover title"
-                            data-bs-content="And here's some amazing content. It's very engaging. Right?"
+                            className='btn btn-outline-primary position-relative'
+                            id='copy-code-button'
+                            ref={copyCodeButtonRef}
                             onClick={copyCodeToClipboard}
                         >Copiar código</button>
                     </div>

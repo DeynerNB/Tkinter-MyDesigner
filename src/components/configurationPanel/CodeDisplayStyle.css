@@ -61,3 +61,32 @@
     border-color: var(--main-color);
     color: var(--main-color);
 }
+#copy-code-button::before {
+    content: "Código copiado!";
+    font-size: 15px;
+
+    position: absolute;
+    top: -50px;
+    left: 0;
+    padding: 7px 10px;
+    border-radius: 7px;
+
+    background-color: #047504d6;
+    color: #ffffff;
+
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.2s, transform 0.3s;
+}
+#copy-code-button.copied::before {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fade-out 2s forwards 1s;
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
