@@ -4,7 +4,7 @@
 
     background-image: radial-gradient(var(--secondary-color) 2px, transparent 2px);
     background-size: 35px 35px;
-    background-color: var(--panel-background);
+    background-color: var(--canvas-background);
 }
 
 #board-controls-container {
@@ -13,15 +13,17 @@
 }
 
 .board-control {
-    width: 25px;
+    min-width: 30px;
     font-size: 18px;
     font-weight: 600;
 
-    border: none;
-
-    outline: 2px solid var(--main-color);
     background-color: #ffffff;
     color: var(--main-color);
+
+    outline: none;
+
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
 }
 .board-control:hover {
     background-color: #b8b8b8;

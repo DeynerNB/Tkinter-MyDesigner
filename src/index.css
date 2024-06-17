@@ -2,7 +2,8 @@
   --main-color: #00487C;
   --secondary-color: #5492d9;
   --delete-color: #B30000;
-  --panel-background: #f3eced;
+  --canvas-background: #f7f5f5;
+  --panel-background: #f5fffe;
 }
 
 body {
@@ -22,4 +23,7 @@ code {
 
 .default-bg {
   background-color: var(--panel-background);
+}
+.default-canvas-bg {
+  background-color: var(--canvas-background);
 }

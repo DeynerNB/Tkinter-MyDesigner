@@ -96,6 +96,9 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
         }
         setScaleValue( value )
     }
+    const reset = () => {
+        setPosition({ x: 0, y: 0 })
+    }
 
     const setElementPosition = () => {
         const board_element = boardRef.current.getBoundingClientRect()
@@ -152,9 +155,10 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
             </div>
 
             {/* Board controls */}
-            <div className='position-absolute d-flex gap-2' id='board-controls-container'>
+            <div className='position-absolute d-flex flex-row-reverse gap-2' id='board-controls-container'>
                 <button className='board-control' onClick={zoomIn} >+</button>
                 <button className='board-control' onClick={zoomOut} >-</button>
+                <button className='board-control' onClick={reset} >Reset</button>
             </div>
         </div>
     );
