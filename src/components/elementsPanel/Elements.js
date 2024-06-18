@@ -257,6 +257,10 @@ export const TKinter_Listbox = {
             value: 35,
             type: "number"
         },
+        items: {
+            value: "",
+            type: "textarea"
+        },
         selectmode: {
             value: "BROWSE",
             type: "select",

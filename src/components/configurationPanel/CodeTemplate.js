@@ -116,6 +116,17 @@ export const generateElementCode = (config, element_id, originX, originY, type, 
         code += `, height=${e_height}`
     }
 
-    code = `# Tkinter element ${element_id}\n` + code + ` )\n\n`
-    return code
+    code = `# Tkinter element ${element_id}\n` + code + ` )\n`
+
+    // Insert elements if is a listbox
+    if (type === "Listbox") {
+        if (config.items) {
+            const item_list = config.items.value.split(",").map((item) => item.trim())
+            for (const i in item_list) {
+                code += `${element_id}.insert( ${i}, "${item_list[i]}" )\n`;
+            }
+        }
+    }
+
+    return code + "\n"
 }
