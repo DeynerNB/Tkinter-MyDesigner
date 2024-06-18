@@ -15,13 +15,16 @@
 
 .default-element {
     user-select: none;
+    background-color: #ffffff;
 }
 
 .draggable-Window,
 .draggable-Button,
 .draggable-Entry,
 .draggable-Text,
-.draggable-Combobox
+.draggable-Combobox,
+.draggable-PhotoImage,
+.draggable-Listbox
 {
     outline: 2px solid #d1d1d1;
     cursor: move;

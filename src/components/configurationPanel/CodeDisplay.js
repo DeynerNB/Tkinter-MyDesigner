@@ -59,25 +59,16 @@ function CodeDisplay({ codeDisplayDialog, elements, deactivateSelection }) {
                 ttk_library = true;
             }
 
-            if (name === "Button") {
-                importObject.add( "Button" )
-                code += generateElementCode(config, key, originX, originY, "Button", from, class_name);
+            if (name !== "Window") {
+                if (from === "Tk") {
+                    importObject.add( name );
+                }
+                if (name === "PhotoImage") {
+                    importObject.add( "Label" )
+                }
+                code += generateElementCode(config, key, originX, originY, name, from, class_name);
             }
-            else if (name === "Entry") {
-                importObject.add( "Entry" )
-                code += generateElementCode(config, key, originX, originY, "Entry", from, class_name);
-            }
-            else if (name === "Text") {
-                importObject.add( "Text" )
-                code += generateElementCode(config, key, originX, originY, "Text", from, class_name);
-            }
-            else if (name === "Label") {
-                importObject.add( "Label" )
-                code += generateElementCode(config, key, originX, originY, "Label", from, class_name);
-            }
-            else if (name === "Combobox") {
-                code += generateElementCode(config, key, originX, originY, "Combobox", from, class_name);
-            }
+
             return value;
         })
         // Set the imports based on the elements generated

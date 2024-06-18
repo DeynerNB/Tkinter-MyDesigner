@@ -209,3 +209,62 @@ export const Tkinter_ComboBox = {
         }
     }
 }
+
+export const Tkinter_PhotoImage = {
+    name: "PhotoImage",
+    from: "Tk",
+    config: {
+        posX: {
+            value: 20,
+            type: "number"
+        },
+        posY: {
+            value: 20,
+            type: "number"
+        },
+        width: {
+            value: 100,
+            type: "number"
+        },
+        height: {
+            value: 100,
+            type: "number"
+        },
+        file: {
+            value: "your/image/path",
+            type: "text"
+        }
+    }
+}
+
+export const TKinter_Listbox = {
+    name: "Listbox",
+    from: "Tk",
+    config: {
+        posX: {
+            value: 20,
+            type: "number"
+        },
+        posY: {
+            value: 20,
+            type: "number"
+        },
+        width: {
+            value: 300,
+            type: "number"
+        },
+        height: {
+            value: 35,
+            type: "number"
+        },
+        selectmode: {
+            value: "BROWSE",
+            type: "select",
+            possible_options: ["BROWSE", "SINGLE", "MULTIPLE", "EXTENDED"]
+        },
+        fontSize: {
+            value: 18,
+            type: "number"
+        }
+    }
+}

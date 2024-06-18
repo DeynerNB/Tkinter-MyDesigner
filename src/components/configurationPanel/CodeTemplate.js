@@ -16,6 +16,9 @@ const extractConfig_VersionTK = (config, defaultTextContent = "") => {
     if (config.fontSize) {
         code += ` font=("Inter", ${config.fontSize.value}),`;
     }
+    if (config.file) {
+        code += ` file="${config.file.value}",`;
+    }
 
     // Remove the last caracter (,)
     return (code.slice(0, -1) + " )");
@@ -89,9 +92,16 @@ export const generateElementCode = (config, element_id, originX, originY, type, 
     }
 
     // Place the element
-    const positionX = config.posX.value - originX
-    const positionY = config.posY.value - originY
-    code += `\n${element_id}.place( x=${positionX.toFixed(2)}, y=${positionY.toFixed(2)}`
+    const positionX = config.posX.value - originX;
+    const positionY = config.posY.value - originY;
+
+    if (type === "PhotoImage") {
+        code += `\nLabel_${element_id} = Label( image=${element_id} )`;
+        code += `\nLabel_${element_id}.place( x=${positionX.toFixed(2)}, y=${positionY.toFixed(2)}`;
+    }
+    else {
+        code += `\n${element_id}.place( x=${positionX.toFixed(2)}, y=${positionY.toFixed(2)}`;
+    }
 
     if (e_width !== -1) {
         code += `, width=${e_width}`
