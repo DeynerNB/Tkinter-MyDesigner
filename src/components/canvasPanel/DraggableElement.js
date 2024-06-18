@@ -1,5 +1,5 @@
 // src/components/DraggableElement.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./DraggableStyle.css"
 
 import PropTypes from "prop-types"
@@ -13,10 +13,24 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 
     // Controls the position of the element
-    const [position, setPosition] = useState( initialPosition );
+    const [position, setPosition] = useState(initialPosition);
 
     // Controls when the object is been drag
     const [dragging, setDragging] = useState(false);
+
+    // Controls when the element position has been initialized
+    const [initialized, setInitialized] = useState(false);
+
+    useEffect(() => {
+        if (initialized) {
+            const valueX = element.config.posX.value;
+            const valueY = element.config.posY.value;
+
+            setPosition({ x: valueX, y: valueY })
+        }
+
+        setInitialized(true);
+    }, [element.config])
 
     // Calculate the position of the element
     const calculateElementPosition = (e) => {
