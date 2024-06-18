@@ -24,7 +24,8 @@
 .draggable-Text,
 .draggable-Combobox,
 .draggable-PhotoImage,
-.draggable-Listbox
+.draggable-Listbox,
+.draggable-Spinbox
 {
     outline: 2px solid #d1d1d1;
     cursor: move;
@@ -36,13 +37,22 @@
 }
 
 .draggable-Combobox {
-    padding: 0 5px;
     text-align: left !important;
+}
+
+.draggable-Combobox, .draggable-Spinbox {
+    padding: 0 5px;
     min-width: 150px;
 }
+
 .draggable-Combobox::before {
     content: ">";
+}
+.draggable-Spinbox::before {
+    content: "<>";
+}
 
+.draggable-Combobox::before, .draggable-Spinbox::before {
     position: absolute;
     right: 10px;
     transform: rotateZ(90deg);

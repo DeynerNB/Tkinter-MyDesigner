@@ -268,3 +268,47 @@ export const TKinter_Listbox = {
         }
     }
 }
+
+export const TKinter_Spinbox = {
+    name: "Spinbox",
+    from: "Tk",
+    config: {
+        posX: {
+            value: 20,
+            type: "number"
+        },
+        posY: {
+            value: 20,
+            type: "number"
+        },
+        width: {
+            value: 300,
+            type: "number"
+        },
+        background: {
+            value: "#FFFFFF",
+            type: "color"
+        },
+        foreground: {
+            value: "#000000",
+            type: "color"
+        },
+        fontSize: {
+            value: 18,
+            type: "number"
+        },
+        justify: {
+            value: "left",
+            type: "select",
+            possible_options: ["left", "center", "right"]
+        },
+        from: {
+            value: 0,
+            type: "number"
+        },
+        to: {
+            value: 100,
+            type: "number"
+        },
+    }
+}

@@ -19,6 +19,12 @@ const extractConfig_VersionTK = (config, defaultTextContent = "") => {
     if (config.file) {
         code += ` file="${config.file.value}",`;
     }
+    if (config.from) {
+        code += ` from_=${config.from.value},`;
+    }
+    if (config.to) {
+        code += ` to=${config.to.value},`;
+    }
 
     // Remove the last caracter (,)
     return (code.slice(0, -1) + " )");
