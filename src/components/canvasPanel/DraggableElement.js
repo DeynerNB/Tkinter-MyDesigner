@@ -18,9 +18,6 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
     // Controls when the object is been drag
     const [dragging, setDragging] = useState(false);
 
-    // Controls when the element position has been initialized
-    const [initialized, setInitialized] = useState(false);
-
     // Keep track of the initial grap point (avoid minimun movement of the element)
     const [startGrapPoint, setStartGrapPoint] = useState(null);
 
@@ -28,15 +25,20 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
     const dragThreshold = 5;
 
     useEffect(() => {
-        if (initialized) {
-            const valueX = element.config.posX.value;
-            const valueY = element.config.posY.value;
 
-            setPosition({ x: valueX, y: valueY })
-        }
+        const handleMouseMove = (e) => {
+            if (dragging && isSelected) {
+                handleDrag(e);
+            }
+        };
+        document.addEventListener("mousemove", handleMouseMove);
 
-        setInitialized(true);
-    }, [element.config])
+        // Limpiar los eventos al desmontar el componente
+        return () => {
+            document.removeEventListener("mousemove", handleMouseMove);
+        };
+
+    }, [dragging, isSelected])
 
     // Calculate the position of the element
     const calculateElementPosition = (e) => {
@@ -54,8 +56,11 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
 
     // Calculate the initial offset
     const handleDragStart = (e) => {
+        if (!isSelected) return;
+
         setDragging(true);
         setZIndex_value( 300 );
+
         const rect = e.target.getBoundingClientRect();
         setOffset({
             x: e.clientX - rect.left,
@@ -76,7 +81,6 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
             Math.pow(e.clientX - startGrapPoint.x, 2) +
             Math.pow(e.clientY - startGrapPoint.y, 2)
         )
-
         if (drag_distance <= dragThreshold) {
             return
         }
@@ -150,10 +154,10 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
             className={`default-element draggable-${element.name} text-nowrap ${ isSelected ? "selected_element" : "" }`}
             style={ setElementStyle( element.config ) }
             onMouseDown={handleDragStart}
-            onMouseMove={handleDrag}
+            // onMouseMove={handleDrag}
             onMouseUp={handleDragEnd}
         >
-            { element.config.textContent?.value || element.name }
+            { (element.name === "Window") ? "" : element.config.textContent?.value || element.name }
         </div>
     );
 }

@@ -106,6 +106,7 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
 
         let delta_x = 0;
         let delta_y = 0;
+        const offset_generation = 50
 
         if (board_element.x < origin.x) {
             delta_x = ( board_element.x >= 0 ) ? Math.abs(origin.x - board_element.x) : origin.x + (-1 * board_element.x)
@@ -114,7 +115,7 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
             delta_y = Math.abs( board_element.y ) + (header_element.offsetHeight - window.scrollY)
         }
 
-        const result = { x: Math.floor( delta_x / scaleValue ), y: Math.floor( delta_y / scaleValue ) }
+        const result = { x: Math.floor( delta_x / scaleValue ) + offset_generation, y: Math.floor( delta_y / scaleValue ) + offset_generation }
         return result
     }
 

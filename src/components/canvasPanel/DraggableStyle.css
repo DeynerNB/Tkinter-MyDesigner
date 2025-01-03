@@ -32,8 +32,20 @@
 }
 
 .draggable-Window {
+    position: relative;
     min-width: 100px;
     min-height: 100px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.draggable-Window::before {
+    position: absolute;
+    content: "Window";
+    font-weight: 800;
+    
+    top: -25px;
 }
 
 .draggable-Combobox {
