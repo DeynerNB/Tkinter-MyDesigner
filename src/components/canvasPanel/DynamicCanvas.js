@@ -53,6 +53,7 @@ function DynamicCanvas({ elements, setSelectElementKey, onElementMoveConfig, sel
 
     const onSelectingBoard = (e) => {
         if (e.target.id.includes('canvas-board')) {
+            setSelectElementKey(null)
             setDragging(true);
             const rect = e.target.getBoundingClientRect();
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ElementPanel from './components/elementsPanel/ElementPanel';
 import ConfigPanel from './components/configurationPanel/ConfigPanel';
 import CodeDisplay from './components/configurationPanel/CodeDisplay';
@@ -10,6 +10,7 @@ import DynamicCanvas from './components/canvasPanel/DynamicCanvas.js';
 function App() {
     const [elements, setElements] = useState({});
     const [selectedElementKey, setSelectedElementKey] = useState(null);
+    const [copiedElement, setCopiedElement] = useState(null);
     const [showCodeDisplay, setShowCodeDisplay] = useState(false);
 
     // Add a element to the elements object
@@ -87,6 +88,39 @@ function App() {
         setSelectedElementKey( null )
         setElements( newElements )
     }
+
+    const copyShortcut = () => {
+        if (selectedElementKey) {
+            const element = elements[ selectedElementKey ]
+            setCopiedElement( element );
+        }
+    }
+    const pasteShortcut = () => {
+        if (copiedElement) {
+            addElement( copiedElement );
+        }
+    }
+
+    // Handle key shortcuts
+    const handleKeyDown = (event) => {
+        if (event.ctrlKey && event.key === 'c') {
+            event.preventDefault();
+            copyShortcut()
+        } else if (event.ctrlKey && event.key === 'v') {
+            event.preventDefault();
+            pasteShortcut();
+        } else if (event.key === 'Delete') {
+            event.preventDefault();
+            deleteSelectedElement()
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        }
+    })
 
     return (
         <div className="container-fluid vh-100 default-bg">

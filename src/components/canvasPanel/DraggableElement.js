@@ -21,6 +21,12 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
     // Controls when the element position has been initialized
     const [initialized, setInitialized] = useState(false);
 
+    // Keep track of the initial grap point (avoid minimun movement of the element)
+    const [startGrapPoint, setStartGrapPoint] = useState(null);
+
+    // Threshold of how much a drag must be made
+    const dragThreshold = 5;
+
     useEffect(() => {
         if (initialized) {
             const valueX = element.config.posX.value;
@@ -55,6 +61,8 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
             x: e.clientX - rect.left,
             y: e.clientY - rect.top
         });
+
+        setStartGrapPoint({ x: e.clientX, y: e.clientY})
     };
 
     // Update the position when dragging
@@ -62,6 +70,17 @@ function DraggableElement({ element, isSelected, onElementMoveConfig, zoomFactor
         if (!isSelected || !dragging) {
             return;
         }
+
+        // Minimum drag distance must be made in order start the element dragging
+        const drag_distance = Math.sqrt(
+            Math.pow(e.clientX - startGrapPoint.x, 2) +
+            Math.pow(e.clientY - startGrapPoint.y, 2)
+        )
+
+        if (drag_distance <= dragThreshold) {
+            return
+        }
+
         // Calculate the new position relative to the grab point
         const new_position = calculateElementPosition( e )
 
